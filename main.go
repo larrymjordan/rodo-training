@@ -2,11 +2,11 @@ package main
 
 import (
 	"challenge2/ipScanner"
-	"fmt"
+	"log"
+	"net/http"
 )
 
-const iP = "186.159.114.6"
-
 func main() {
-	fmt.Printf("%v\n", ipScanner.ScanIP(iP))
+	http.HandleFunc("/ip/details", ipScanner.StartIPScan)
+	log.Fatal(http.ListenAndServe(":12345", nil))
 }
